@@ -60,7 +60,7 @@ From within object_detection:
 ```
 To download Inference Graph:
 ```
-! python exporter_main_v2.py --trained_checkpoint_dir=training --pipeline_config_path=training/ssd_mobilenet_v2_320x320_coco17_tpu-8.config --output_directory inference_graph
+!python exporter_main_v2.py --trained_checkpoint_dir=training --pipeline_config_path=training/ssd_mobilenet_v2_320x320_coco17_tpu-8.config --output_directory inference_graph
 ```
 
 
