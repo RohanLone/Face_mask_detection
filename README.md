@@ -7,17 +7,28 @@ In this project, I used Google Colab (for model training), Google Drive (for sto
 Used labelimg for Annotation and saved in xml format. Converted XML to CSV using [xml_to_csv.py](https://github.com/RohanLone/Tensorflow_Object_Detection_with_Tensorflow_2.0/blob/main/xml_to_csv.py) script. 
 This script [generate_tfrecords.py](https://github.com/RohanLone/Tensorflow_Object_Detection_with_Tensorflow_2.0/blob/main/generate_tfrecord.py) will be used to covert the csv into the TFRecord format. 
 
-I used ssd_mobilenet_v2_320x320_coco17_tpu pretrained model for training and configuration as follows:
-  1. num_classes: 2
-  2. fine_tune_checkpoint: "ssd_mobilenet_v2_320x320_coco17_tpu-8/checkpoint/ckpt-0"
-  3. fine_tune_checkpoint_type: "detection"
-  4. batch_size: 4
-  5. learning_rate_base: 8e-3
-  6. label_map_path: "annotations/label_map.pbtxt" (#path to your label_map file)
-  7. input_path: "annotations/train.record" (#path to train.record)
-  8. label_map_path: "annotations/label_map.pbtxt" (#path to your label_map file)
-  9. input_path: "annotations/test.record" (#Path to test.record)
 
-num_classes:
-  * mask
-  * wothout_mask
+1. 50 Images are used for model building. Used LabelImg for labelling the images (Output=XMLFile)
+2. Split 90% and 10% data for Train and Test respectively.
+3. Generated TF Records from these splits
+4. configured a .config file for the model (ssd_mobilenet_v2_320x320_coco17_tpu-8) as follows:
+ num_classes: 2 (1. Mask , 2. Without_mask)
+ fine_tune_checkpoint: "ssd_mobilenet_v2_320x320_coco17_tpu-8/checkpoint/ckpt-0"
+ fine_tune_checkpoint_type: "detection"
+ batch_size: 4
+ learning_rate: .0001
+   * train_input_reader: {
+    label_map_path: "images/labelmap.pbtxt"
+    tf_record_input_reader {
+    input_path: "train.record" }}
+  
+  * eval_input_reader: {
+  label_map_path: "images/labelmap.pbtxt"
+  shuffle: false
+  num_epochs: 1
+  tf_record_input_reader {
+  input_path: "test.record"}}
+  
+5. Trained on Google Colab
+6. Exported graph from new trained model
+7. Detect on new data!
