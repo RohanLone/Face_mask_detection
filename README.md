@@ -12,23 +12,25 @@ This script [generate_tfrecords.py](https://github.com/RohanLone/Tensorflow_Obje
 2. Split 90% and 10% data for Train and Test respectively.
 3. Generated TF Records from these splits
 4. configured a .config file for the model (ssd_mobilenet_v2_320x320_coco17_tpu-8) as follows:
- num_classes: 2 (1. Mask , 2. Without_mask)
- fine_tune_checkpoint: "ssd_mobilenet_v2_320x320_coco17_tpu-8/checkpoint/ckpt-0"
- fine_tune_checkpoint_type: "detection"
- batch_size: 4
- learning_rate: .0001
+ * num_classes: 2 (1. Mask , 2. Without_mask)
+ * fine_tune_checkpoint: "ssd_mobilenet_v2_320x320_coco17_tpu-8/checkpoint/ckpt-0"
+ * fine_tune_checkpoint_type: "detection"
+ * batch_size: 4
+ * learning_rate: .0001
+ 
+ ```
    * train_input_reader: {
     label_map_path: "images/labelmap.pbtxt"
     tf_record_input_reader {
     input_path: "train.record" }}
-  
-  * eval_input_reader: {
-  label_map_path: "images/labelmap.pbtxt"
-  shuffle: false
-  num_epochs: 1
-  tf_record_input_reader {
-  input_path: "test.record"}}
-  
+ 
+   * eval_input_reader: {
+   label_map_path: "images/labelmap.pbtxt"
+   shuffle: false
+   num_epochs: 1
+   tf_record_input_reader {
+   input_path: "test.record"}}
+  ```
 5. Trained on Google Colab
 6. Exported graph from new trained model
 7. Detect on new data!
