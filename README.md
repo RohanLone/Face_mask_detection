@@ -4,7 +4,7 @@ Using Tranfer learning, trained this model to detect the human faces with masks 
 Face Mask detection using TensorFlow 2 Object Detection API With Google Colab
 
 In this project, I used Google Colab (for model training), Google Drive (for storage) and Local machine (for model testing).
-Used labelimg for Annotation and saved in xml format. Converted XML to CSV using [xml_to_csv.py](https://github.com/RohanLone/Tensorflow_Object_Detection_with_Tensorflow_2.0/blob/main/xml_to_csv.py) script. 
+Converted XML to CSV using [xml_to_csv.py](https://github.com/RohanLone/Tensorflow_Object_Detection_with_Tensorflow_2.0/blob/main/xml_to_csv.py) script. 
 This script [generate_tfrecords.py](https://github.com/RohanLone/Tensorflow_Object_Detection_with_Tensorflow_2.0/blob/main/generate_tfrecord.py) will be used to covert the csv into the TFRecord format. 
 
 
